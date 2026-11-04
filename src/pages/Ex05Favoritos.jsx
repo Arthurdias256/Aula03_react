@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext.jsx';
 import { useLocalStorage } from '../hooks/useLocalStorage.js';
 
-export default function Ex05Favoritos() {
-  const [favoritos, setFavoritos] = useLocalStorage('favoritos', []);
-  const [novo, setNovo] = useState('');
+const tecnologias = ['React', 'Vite', 'React Router', 'JavaScript'];
 
-  function adicionar() {
-    if (!novo.trim()) return;
-    setFavoritos([...favoritos, novo.trim()]);
-    setNovo('');
+export default function Ex05Favoritos() {
+  const { tema } = useContext(ThemeContext); // Contexto do exercício 03.
+  const [favoritos, setFavoritos] = useLocalStorage('lab-favoritos', []);
+
+  function alternarFavorito(tecnologia) {
+    // Atualiza o array SEM modificá-lo diretamente.
+    setFavoritos((anteriores) =>
+      anteriores.includes(tecnologia)
+        ? anteriores.filter((item) => item !== tecnologia)
+        : [...anteriores, tecnologia]
+    );
   }
 
   function limparTodos() {
@@ -17,21 +23,28 @@ export default function Ex05Favoritos() {
 
   return (
     <section className="panel">
-      <span className="eyebrow">Exercício 05 · Integração</span>
+      <span className="eyebrow">Exercício 05 · integração</span>
       <h1>Favoritos persistentes</h1>
-      <div className="actions">
-        <input value={novo} onChange={(e) => setNovo(e.target.value)} placeholder="Novo favorito" />
-        <button onClick={adicionar}>Adicionar</button>
-        <button className="secondary" onClick={limparTodos}>Limpar todos</button>
-      </div>
-      <ul>
-        {favoritos.map((f, i) => (
-          <li key={i}>{f}</li>
-        ))}
-      </ul>
-      <p className="muted">
-        Troque de rota e atualize a página: os favoritos continuam salvos.
+      <p>
+        Contexto global: <strong>{tema}</strong> · Favoritos: <strong>{favoritos.length}</strong>
       </p>
+      <div className="cards">
+        {tecnologias.map((tecnologia) => {
+          const favorito = favoritos.includes(tecnologia);
+          return (
+            <div className="subpanel" key={tecnologia}>
+              <h2>{tecnologia}</h2>
+              <button onClick={() => alternarFavorito(tecnologia)}>
+                {favorito ? '★ Remover dos favoritos' : '☆ Favoritar'}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+      <div className="actions">
+        <button className="secondary" onClick={limparTodos}>Limpar todos os favoritos</button>
+      </div>
+      <p className="muted">Troque de rota e atualize a página: os favoritos continuam salvos.</p>
     </section>
   );
 }
