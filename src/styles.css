@@ -27,4 +27,6 @@ p, li { line-height: 1.65; }
 .subpanel { border: 1px solid var(--border); border-radius: 13px; padding: 18px; }
 .actions { display: flex; flex-wrap: wrap; gap: 7px; }
 code { background: var(--bg); padding: .15em .3em; border-radius: 4px; }
+.layout.azul { --bg: #eaf0ff; --card: #ffffff; --text: #1a2a5e; --sub: #3a4f8a; --border: #b8c8f0; }
+.layout.azul button { background: #2b5fd9; }
 @media(max-width: 730px) { .layout { grid-template-columns: 1fr; } .sidebar { border-right: 0; border-bottom: 1px solid var(--border); padding: 18px; } nav { flex-direction: row; flex-wrap: wrap; } nav a { font-size: .84rem; } .content { padding: 18px; } }

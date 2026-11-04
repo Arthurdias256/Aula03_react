@@ -18,18 +18,19 @@ const paginas = [
 ];
 
 export default function App() {
-  // Consome o tema global disponibilizado em main.jsx.
+  // O tema é compartilhado com TODAS as páginas pelo Context API.
   const { tema } = useContext(ThemeContext);
 
+const classeTema = tema === 'escuro' ? 'dark' : tema === 'azul' ? 'azul' : '';
   return (
-    <div className={\`layout \${tema === 'escuro' ? 'dark' : ''}\`}>
+    <div className={`layout ${classeTema}`}>
       <aside className="sidebar">
         <div className="brand">⚛ Laboratório React</div>
         <p>5 exercícios demonstrativos</p>
 
         <nav aria-label="Exercícios">
           {paginas.map((pagina) => (
-            // NavLink aplica a classe active à rota atual.
+            // NavLink aplica 'active' automaticamente na rota selecionada.
             <NavLink key={pagina.caminho} to={pagina.caminho} end>
               {pagina.rotulo}
             </NavLink>
@@ -38,7 +39,7 @@ export default function App() {
       </aside>
 
       <main className="content">
-        {/* A URL decide qual página será renderizada. */}
+        {/* React Router escolhe apenas o componente da rota atual. */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/exercicio-1" element={<Ex01Titulo />} />
