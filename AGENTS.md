@@ -32,7 +32,16 @@ src/
 - `npm run lint` — executa o linter
 - `npm run preview` — pré-visualiza o build
 
-## Convenções
+## Sequência didática
+
+| # | Rota | Conceito | Resultado |
+|---|------|----------|-----------|
+| 1 | /exercicio-1 | useEffect + dependências | título da aba acompanha cliques |
+| 2 | /exercicio-2 | useEffect + cleanup | largura da janela em tempo real |
+| 3 | /exercicio-3 | createContext / useContext | tema claro/escuro global |
+| 4 | /exercicio-4 | useCounter | mesma lógica, dois estados independentes |
+| 5 | /exercicio-5 | useLocalStorage + Context | favoritos persistentes |
+
 
 - Componentes/páginas em `pages/` são exercícios numerados (Ex01...).
 - Hooks reutilizáveis ficam em `hooks/`.
