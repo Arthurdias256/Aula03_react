@@ -25,7 +25,7 @@ const classeTema = tema === 'escuro' ? 'dark' : tema === 'azul' ? 'azul' : '';
   return (
     <div className={`layout ${classeTema}`}>
       <aside className="sidebar">
-        <div className="brand">⚛ Laboratório React</div>
+        <div className="brand">⚛ ReactLab</div>
         <p>5 exercícios demonstrativos</p>
 
         <nav aria-label="Exercícios">
